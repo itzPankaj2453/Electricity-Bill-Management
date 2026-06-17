@@ -1,0 +1,28 @@
+# Executables
+*.exe
+*.out
+
+# Object files
+*.o
+*.obj
+
+# Debug files
+*.pdb
+
+# Build folders
+build/
+bin/
+
+# Visual Studio
+.vs/
+*.vcxproj.user
+
+# Code::Blocks
+bin/
+obj/
+
+# Dev-C++
+*.layout
+
+# Temporary files
+*.tmp

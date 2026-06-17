@@ -1,0 +1,41 @@
+========== MENU ==========
+1. Generate and Save Bill
+2. View Saved Bills
+3. Delete All Saved Records
+4. Exit
+
+Key words : Entry , View , Delete , Exit
+Enter Choice: Entry
+
+Enter Your Customer ID: 101
+Enter Your Name: ABC
+Enter the number of Units Consumed: 400
+
+Customer ID : 101
+Name : ABC
+Units Consumed : 400
+Amount Charges @Rs 1.80 per unit : 720.00
+Surcharge Amount : 108.00
+Net Amount Paid By the Customer : 828.00
+
+Bill details saved successfully!
+
+Key words : Entry , View , Delete , Exit
+Enter Choice: View
+
+========== SAVED BILLS ==========
+
+Customer ID : 101
+Name : ABC
+Units Consumed : 400
+Net Amount Paid : 828.00
+--------------------------------------------------
+
+Key words : Entry , View , Delete , Exit
+Enter Choice: Delete
+Are you sure you want to delete all records? (Y/N): y
+All records deleted successfully!
+
+Key words : Entry , View , Delete , Exit
+Enter Choice: Exit
+Thank You!
