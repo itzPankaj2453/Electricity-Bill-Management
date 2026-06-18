@@ -2,93 +2,80 @@
 #include <iomanip>
 #include <fstream>
 #include <string>
-
+#include <cstdio>
 using namespace std;
-
 int main()
 {
     int customer_id;
-    float unit, charge, bill, surcharge;
+    float unit, charge, bill, surcharge, rate;
     string name, choice;
-
     cout << "\n========== MENU ==========" << endl;
-    cout << "1. Generate and Save Bill" << endl;
-    cout << "2. View Saved Bills" << endl;
-    cout << "3. Delete All Saved Records" << endl;
-    cout << "4. Exit" << endl;
-
+    cout << "1.-->> Generate and Save Bill <<--" << endl;
+    cout << "2.-->> View Saved Bills <<--" << endl;
+    cout << "3.-->> Delete All Saved Records <<--" << endl;
+    cout << "4.-->> Exit <<--" << endl;
     do
     {
-        cout << "\nKey words : Entry , View , Delete , Exit" << endl;
-        cout << "Enter Choice: ";
-
+        cout << "\n-->>Key words : Entry , View , Delete , Exit" << endl;
+        cout << "-->>Enter Choice: ";
         cin >> choice;
-        cin.ignore();
-
+        cin >> choice;
+        cin.ignore(1000, '\n');
         if (choice == "Entry" || choice == "entry")
         {
             surcharge = 0;
-
-            cout << "\nEnter Your Customer ID: ";
+            cout << "-->>Enter Your Customer ID: ";
             cin >> customer_id;
-
-            cout << "Enter Your Name: ";
-            cin.ignore();
+            cout << "-->>Enter Your Name: ";
+            cin.ignore(1000, '\n');
             getline(cin, name);
-
-            cout << "Enter the number of Units Consumed: ";
+            cout << "-->>Enter the number of Units Consumed: ";
             cin >> unit;
-
-            cout << "\nCustomer ID : " << customer_id << endl;
-            cout << "Name : " << name << endl;
-            cout << "Units Consumed : " << unit << endl;
-
-            if (unit <= 199)
+            if (unit < 0)
             {
-                charge = unit * 1.20;
-                cout << "Amount Charges @Rs 1.20 per unit : "
-                     << fixed << setprecision(2) << charge << endl;
+                cout << "-->>Invalid units!<<--" << endl;
+                continue;
             }
-            else if (unit >= 200 && unit < 400)
+            else if (unit <= 199)
             {
-                charge = unit * 1.50;
-                cout << "Amount Charges @Rs 1.50 per unit : "
-                     << fixed << setprecision(2) << charge << endl;
+                rate = 1.20;
+                charge = unit * rate;
             }
-            else if (unit >= 400 && unit <= 600)
+            else if (unit < 400)
             {
-                charge = unit * 1.80;
-                cout << "Amount Charges @Rs 1.80 per unit : "
-                     << fixed << setprecision(2) << charge << endl;
+                rate = 1.50;
+                charge = unit * rate;
+            }
+            else if (unit <= 600)
+            {
+                rate = 1.80;
+                charge = unit * rate;
             }
             else
             {
-                charge = unit * 2.00;
-                cout << "Amount Charges @Rs 2.00 per unit : "
-                     << fixed << setprecision(2) << charge << endl;
+                rate = 2.00;
+                charge = unit * rate;
             }
-
             bill = charge;
-
             if (bill > 400)
             {
                 surcharge = bill * 0.15;
                 bill += surcharge;
-
-                cout << "Surcharge Amount : "
-                     << fixed << setprecision(2) << surcharge << endl;
             }
-
             if (bill < 100)
             {
                 bill = 100;
             }
-
-            cout << "Net Amount Paid By the Customer : "
+            cout << "\n->Customer ID : " << customer_id << endl;
+            cout << "->Name : " << name << endl;
+            cout << "->Units Consumed : " << unit << endl;
+            cout << "->Amount Charges @Rs " << rate << " per unit : "
+                 << fixed << setprecision(2) << charge << endl;
+            cout << "->Surcharge Amount : "
+                 << fixed << setprecision(2) << surcharge << endl;
+            cout << "->Net Amount Paid By the Customer : "
                  << fixed << setprecision(2) << bill << endl;
-
             ofstream outfile("Electricity_bill.txt", ios::app);
-
             if (outfile.is_open())
             {
                 outfile << "\nCustomer ID : " << customer_id << endl;
@@ -97,14 +84,12 @@ int main()
                 outfile << "Net Amount Paid : "
                         << fixed << setprecision(2) << bill << endl;
                 outfile << "--------------------------------------------------" << endl;
-
                 outfile.close();
-
-                cout << "\nBill details saved successfully!" << endl;
+                cout << "\n-->>Bill details saved successfully!<<--" << endl;
             }
             else
             {
-                cout << "\nError opening file!" << endl;
+                cout << "\n!! Error opening file !!" << endl;
             }
         }
         else if (choice == "View" || choice == "view")
@@ -126,7 +111,7 @@ int main()
             }
             else
             {
-                cout << "No records found or file cannot be opened." << endl;
+                cout << "!No records found or file cannot be opened." << endl;
             }
         }
         else if (choice == "Delete" || choice == "delete")
@@ -135,34 +120,33 @@ int main()
 
             cout << "Are you sure you want to delete all records? (Y/N): ";
             cin >> confirm;
-            cin.ignore();
+            cin.ignore(1000, '\n');
 
             if (confirm == 'Y' || confirm == 'y')
             {
-                ofstream outfile("Electricity_bill.txt");
 
-                if (outfile.is_open())
+                if (remove("Electricity_bill.txt") == 0)
                 {
-                    outfile.close();
+
                     cout << "All records deleted successfully!" << endl;
                 }
                 else
                 {
-                    cout << "Error opening file!" << endl;
+                    cout << "File not found or could not be deleted!" << endl;
                 }
             }
             else
             {
-                cout << "Deletion cancelled!" << endl;
+                cout << "-->>Deletion cancelled!<<--" << endl;
             }
         }
         else if (choice == "Exit" || choice == "exit")
         {
-            cout << "Thank You!" << endl;
+            cout << "-_-Thank You!-_-" << endl;
         }
         else
         {
-            cout << "Invalid Choice! Please try again." << endl;
+            cout << "! Invalid Choice! Please try again !" << endl;
         }
 
     } while (choice != "Exit" && choice != "exit");
