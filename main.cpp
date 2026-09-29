@@ -19,8 +19,7 @@ int main()
         cout << "\n-->>Key words : Entry , View , Delete , Exit" << endl;
         cout << "-->>Enter Choice: ";
         cin >> choice;
-        cin >> choice;
-        cin.ignore(1000, '\n');
+        cin.ignore(1000,'\n');
         if (choice == "Entry" || choice == "entry")
         {
             surcharge = 0;

@@ -1,0 +1,12 @@
+
+Customer ID : 101
+Name : Pankaj
+Units Consumed : 475
+Net Amount Paid : 983.25
+--------------------------------------------------
+
+Customer ID : 102
+Name : Vimal
+Units Consumed : 345
+Net Amount Paid : 595.12
+--------------------------------------------------
